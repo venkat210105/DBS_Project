@@ -9,47 +9,25 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/your-repo/dbs-feedback-system.git'
+                git 'https://github.com/venkat210105/DBS_Project.git'
             }
         }
 
         stage('Build Backend') {
             steps {
-                dir('backend') {
-                    sh 'mvn clean package -DskipTests'
-                }
+                bat 'cd backend && mvnw.cmd clean package -DskipTests'
             }
         }
 
         stage('Run Tests') {
             steps {
-                dir('backend') {
-                    sh 'mvn test'
-                }
+                bat 'cd backend && mvnw.cmd test'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                dir('docker') {
-                    sh "docker build -t ${IMAGE_NAME}:${TAG} ../backend"
-                }
-            }
-        }
-
-        stage('Push Docker Image (Optional)') {
-            steps {
-                echo 'You can push this image to Docker Hub or ECR here'
-                // Example for Docker Hub:
-                // sh "docker login -u $DOCKER_USER -p $DOCKER_PASS"
-                // sh "docker tag ${IMAGE_NAME}:${TAG} your-dockerhub-user/${IMAGE_NAME}:${TAG}"
-                // sh "docker push your-dockerhub-user/${IMAGE_NAME}:${TAG}"
-            }
-        }
-
-        stage('Pipeline Complete') {
-            steps {
-                echo "Build, Test, and Docker Image Creation Completed!"
+                bat 'docker build -t %IMAGE_NAME%:%TAG% docker'
             }
         }
     }
