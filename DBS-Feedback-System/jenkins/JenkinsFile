@@ -30,6 +30,15 @@ pipeline {
                 bat 'docker build -t %IMAGE_NAME%:%TAG% -f DBS-Feedback-System\\docker\\Dockerfile .'
             }
         }
+
+        stage('Run Container') {
+            steps {
+                bat 'docker stop dbs-feedback || exit 0'   // stop existing container if running
+                bat 'docker rm dbs-feedback || exit 0'     // remove old container
+                bat 'docker run -d -p 8081:8080 --name dbs-feedback dbs-feedback:latest'
+            }
+        }
+
     }
 
     post {
