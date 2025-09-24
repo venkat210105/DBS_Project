@@ -15,19 +15,19 @@ pipeline {
 
         stage('Build Backend') {
             steps {
-                bat 'cd backend && mvnw.cmd clean package -DskipTests'
+                bat 'cd DBS-Feedback-System\\backend && mvnw.cmd clean package -DskipTests'
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat 'cd backend && mvnw.cmd test'
+                bat 'cd DBS-Feedback-System\\backend && mvnw.cmd test'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t %IMAGE_NAME%:%TAG% docker'
+                bat 'docker build -t %IMAGE_NAME%:%TAG% DBS-Feedback-System\\docker'
             }
         }
     }
