@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FeedbackRepository extends JpaRepository<Feedback, Long> {
-    // Spring Data JPA automatically provides CRUD methods
+    // add custom queries here if needed (e.g., findByRatingGreaterThan)
 }

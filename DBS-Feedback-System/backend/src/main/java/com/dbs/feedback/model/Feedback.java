@@ -1,44 +1,72 @@
 package com.dbs.feedback.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
+import jakarta.persistence.*;
+import java.sql.Timestamp;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
+@Table(name = "feedback")
 public class Feedback {
 
-     @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Customer name cannot be empty")
-    private String customerName;
+    @Column(name = "user_name", nullable = false)
+    private String userName;
 
-    @NotBlank(message = "Comment cannot be empty")
+    @Column(name = "user_email", nullable = false)
+    private String userEmail;
+
+    @Column(name = "product_id", nullable = false)
+    private Long productId;
+
+    @Column(nullable = false)
+    private int rating;
+
+    @Column(length = 255, nullable = false)
     private String comment;
 
-    @Min(value = 1, message = "Rating must be at least 1")
-    @Max(value = 5, message = "Rating must be at most 5")
-    private int rating;
-   
+    @Column(name = "customer_name", nullable = false)
+    private String customerName;
+
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private Timestamp createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private Timestamp updatedAt;
+
     // Constructors
     public Feedback() {}
-    public Feedback(String customerName, String comment, int rating) {
-        this.customerName = customerName;
-        this.comment = comment;
+
+    public Feedback(String userName, String userEmail, Long productId, int rating, String comment, String customerName) {
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.productId = productId;
         this.rating = rating;
+        this.comment = comment;
+        this.customerName = customerName;
     }
 
     // Getters & Setters
     public Long getId() { return id; }
-    public String getCustomerName() { return customerName; }
-    public void setCustomerName(String customerName) { this.customerName = customerName; }
-    public String getComment() { return comment; }
-    public void setComment(String comment) { this.comment = comment; }
+    public String getUserName() { return userName; }
+    public void setUserName(String userName) { this.userName = userName; }
+    public String getUserEmail() { return userEmail; }
+    public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
+    public Long getProductId() { return productId; }
+    public void setProductId(Long productId) { this.productId = productId; }
     public int getRating() { return rating; }
     public void setRating(int rating) { this.rating = rating; }
+    public String getComment() { return comment; }
+    public void setComment(String comment) { this.comment = comment; }
+    public String getCustomerName() { return customerName; }
+    public void setCustomerName(String customerName) { this.customerName = customerName; }
+    public Timestamp getCreatedAt() { return createdAt; }
+    public Timestamp getUpdatedAt() { return updatedAt; }
+
+    
 }
