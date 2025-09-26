@@ -1,8 +1,11 @@
+com\dbs\feedback\dto\SentimentResponse.class
 com\dbs\feedback\WebConfig$1.class
+SentimentService.class
 com\dbs\feedback\Application.class
 com\dbs\feedback\model\Feedback.class
 com\dbs\feedback\WebConfig.class
 com\dbs\feedback\service\FeedbackService.class
+com\dbs\feedback\dto\SentimentRequest.class
 com\dbs\feedback\repository\TestEntityRepository.class
 com\dbs\feedback\exception\GlobalExceptionHandler.class
 com\dbs\feedback\model\TestEntity.class

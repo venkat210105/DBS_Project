@@ -31,6 +31,12 @@ public class Feedback {
     @Column(name = "customer_name", nullable = false)
     private String customerName;
 
+    @Column(name = "sentiment_label")
+    private String sentimentLabel;   // POSITIVE / NEGATIVE / NEUTRAL
+
+    @Column(name = "sentiment_score")
+    private Double sentimentScore;   // 0.0 - 1.0
+
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private Timestamp createdAt;
@@ -53,20 +59,31 @@ public class Feedback {
 
     // Getters & Setters
     public Long getId() { return id; }
+
     public String getUserName() { return userName; }
     public void setUserName(String userName) { this.userName = userName; }
+
     public String getUserEmail() { return userEmail; }
     public void setUserEmail(String userEmail) { this.userEmail = userEmail; }
+
     public Long getProductId() { return productId; }
     public void setProductId(Long productId) { this.productId = productId; }
+
     public int getRating() { return rating; }
     public void setRating(int rating) { this.rating = rating; }
+
     public String getComment() { return comment; }
     public void setComment(String comment) { this.comment = comment; }
+
     public String getCustomerName() { return customerName; }
     public void setCustomerName(String customerName) { this.customerName = customerName; }
+
+    public String getSentimentLabel() { return sentimentLabel; }
+    public void setSentimentLabel(String sentimentLabel) { this.sentimentLabel = sentimentLabel; }
+
+    public Double getSentimentScore() { return sentimentScore; }
+    public void setSentimentScore(Double sentimentScore) { this.sentimentScore = sentimentScore; }
+
     public Timestamp getCreatedAt() { return createdAt; }
     public Timestamp getUpdatedAt() { return updatedAt; }
-
-    
 }
