@@ -1,0 +1,85 @@
+2025-09-23T19:04:53.211Z [INFO] ----------------------invoke list_jdks----------------------
+2025-09-23T19:04:53.213Z [INFO] [Tool.invoke]({name: list_jdks, input: {
+  "projectPath": "d:\\DBS_Devops"
+}}).
+2025-09-23T19:04:53.216Z [INFO] [Task.start](): Starting task toolCall
+2025-09-23T19:04:53.219Z [INFO] [Task.start](): Started task toolCall
+2025-09-23T19:04:53.221Z [INFO] [Tool.invoke] validate GitHub Copilot license.
+2025-09-23T19:05:30.142Z [INFO] Copilot user info:{
+  "access_type_sku": "free_educational_quota",
+  "analytics_tracking_id": "4157495799e9fa4f92ea606b779dd75b",
+  "assigned_date": "2024-10-02T18:14:45+05:30",
+  "can_signup_for_limited": false,
+  "chat_enabled": true,
+  "copilot_plan": "individual",
+  "organization_login_list": [],
+  "organization_list": [],
+  "quota_reset_date": "2025-10-01",
+  "quota_snapshots": {
+    "chat": {
+      "entitlement": 0,
+      "overage_count": 0,
+      "overage_permitted": false,
+      "percent_remaining": 100,
+      "quota_id": "chat",
+      "quota_remaining": 0,
+      "remaining": 0,
+      "unlimited": true,
+      "timestamp_utc": "2025-09-23T19:05:30.846Z"
+    },
+    "completions": {
+      "entitlement": 0,
+      "overage_count": 0,
+      "overage_permitted": false,
+      "percent_remaining": 100,
+      "quota_id": "completions",
+      "quota_remaining": 0,
+      "remaining": 0,
+      "unlimited": true,
+      "timestamp_utc": "2025-09-23T19:05:30.846Z"
+    },
+    "premium_interactions": {
+      "entitlement": 300,
+      "overage_count": 0,
+      "overage_permitted": false,
+      "percent_remaining": 99.66666666666667,
+      "quota_id": "premium_interactions",
+      "quota_remaining": 299,
+      "remaining": 299,
+      "unlimited": false,
+      "timestamp_utc": "2025-09-23T19:05:30.846Z"
+    }
+  },
+  "quota_reset_date_utc": "2025-10-01T00:00:00.000Z"
+}
+2025-09-23T19:05:30.147Z [WARN] "GitHub Copilot app modernization - upgrade for Java" and its tools are only available for GitHub Copilot "Pro", "Pro+", "Business" and "Enterprise" plans.
+2025-09-23T19:05:30.150Z [ERROR] [Tool.invoke] error occurs when invoking tool list_jdks: UserError: "GitHub Copilot app modernization - upgrade for Java" and its tools are only available for GitHub Copilot "Pro", "Pro+", "Business" and "Enterprise" plans.. Please upgrade your GitHub Copilot plan to use this feature or upgrading this project using other tools you prefer..
+2025-09-23T19:05:30.155Z [INFO] [Task.complete](): Completing task toolCall
+2025-09-23T19:05:30.162Z [INFO] ----------------------invoked list_jdks----------------------
+2025-09-23T19:05:30.180Z [INFO] [Task.complete](): Completed task toolCall
+2025-09-23T19:05:37.532Z [INFO] ----------------------invoke list_mavens----------------------
+2025-09-23T19:05:37.534Z [INFO] [Tool.invoke]({name: list_mavens, input: {
+  "includeVersion": true,
+  "projectPath": "d:\\DBS_Devops"
+}}).
+2025-09-23T19:05:37.535Z [INFO] [Task.start](): Starting task toolCall
+2025-09-23T19:05:37.537Z [INFO] [Task.start](): Started task toolCall
+2025-09-23T19:05:37.538Z [INFO] [Tool.invoke] validate GitHub Copilot license.
+2025-09-23T19:05:37.540Z [WARN] "GitHub Copilot app modernization - upgrade for Java" and its tools are only available for GitHub Copilot "Pro", "Pro+", "Business" and "Enterprise" plans.
+2025-09-23T19:05:37.542Z [ERROR] [Tool.invoke] error occurs when invoking tool list_mavens: UserError: "GitHub Copilot app modernization - upgrade for Java" and its tools are only available for GitHub Copilot "Pro", "Pro+", "Business" and "Enterprise" plans.. Please upgrade your GitHub Copilot plan to use this feature or upgrading this project using other tools you prefer..
+2025-09-23T19:05:37.544Z [INFO] [Task.complete](): Completing task toolCall
+2025-09-23T19:05:37.546Z [INFO] ----------------------invoked list_mavens----------------------
+2025-09-23T19:05:37.552Z [INFO] [Task.complete](): Completed task toolCall
+2025-09-23T19:46:50.894Z [INFO] ----------------------invoke install_maven----------------------
+2025-09-23T19:46:50.894Z [INFO] [Tool.invoke]({name: install_maven, input: {
+  "version": "latest",
+  "projectPath": "d:\\DBS_Devops"
+}}).
+2025-09-23T19:46:50.895Z [INFO] [Task.start](): Starting task toolCall
+2025-09-23T19:46:50.896Z [INFO] [Task.start](): Started task toolCall
+2025-09-23T19:46:50.896Z [INFO] [Tool.invoke] validate GitHub Copilot license.
+2025-09-23T19:46:50.897Z [WARN] "GitHub Copilot app modernization - upgrade for Java" and its tools are only available for GitHub Copilot "Pro", "Pro+", "Business" and "Enterprise" plans.
+2025-09-23T19:46:50.898Z [ERROR] [Tool.invoke] error occurs when invoking tool install_maven: UserError: "GitHub Copilot app modernization - upgrade for Java" and its tools are only available for GitHub Copilot "Pro", "Pro+", "Business" and "Enterprise" plans.. Please upgrade your GitHub Copilot plan to use this feature or upgrading this project using other tools you prefer..
+2025-09-23T19:46:50.898Z [INFO] [Task.complete](): Completing task toolCall
+2025-09-23T19:46:50.899Z [INFO] ----------------------invoked install_maven----------------------
+2025-09-23T19:46:50.902Z [INFO] [Task.complete](): Completed task toolCall
