@@ -22,6 +22,24 @@ yarn-error.log*
 .env.production.local
 
 # ===============================
+# Java / Maven
+# ===============================
+
+# Maven build directory
+target/
+
+# Compiled class files
+*.class
+
+# JAR files
+*.jar
+*.war
+*.ear
+
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.properties
+
+# ===============================
 # Python
 # ===============================
 
