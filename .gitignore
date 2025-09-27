@@ -46,11 +46,16 @@ target/
 # Virtual environment directories
 venv/
 .venv/
+env/
+.env/
+ENV/
 
 # Python cache
 __pycache__/
 *.py[cod]
 *$py.class
+*.pyo
+*.pyd
 
 # Distribution / packaging
 *.egg
@@ -58,6 +63,15 @@ __pycache__/
 dist/
 build/
 *.whl
+
+# ML model files and cache
+*.pkl
+*.pickle
+models/
+.cache/
+
+# Jupyter
+.ipynb_checkpoints
 
 # ===============================
 # Misc / IDE
