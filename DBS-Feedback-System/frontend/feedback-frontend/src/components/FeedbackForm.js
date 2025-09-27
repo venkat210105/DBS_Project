@@ -1,88 +1,196 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./FeedbackForm.css"; // We'll create this CSS file
 
 const FeedbackForm = ({ onFeedbackAdded }) => {
-  const [userName, setUserName] = useState("");
-  const [userEmail, setUserEmail] = useState("");
-  const [productId, setProductId] = useState("");
-  const [customerName, setCustomerName] = useState("");
-  const [comment, setComment] = useState("");
-  const [rating, setRating] = useState(1);
+  const [formData, setFormData] = useState({
+    userName: "",
+    userEmail: "",
+    productId: "",
+    customerName: "",
+    comment: "",
+    rating: 1,
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: name === "rating" || name === "productId" ? parseInt(value) || "" : value
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    
     try {
-      const res = await axios.post("http://localhost:8085/feedback/submit", {
-        userName,
-        userEmail,
-        productId: parseInt(productId),
-        customerName,
-        comment,
-        rating: parseInt(rating),
+      await axios.post("http://localhost:8085/feedback/submit", {
+        ...formData,
+        productId: parseInt(formData.productId),
+        rating: parseInt(formData.rating),
       });
-      onFeedbackAdded(res.data);
-
+      
       // Clear form
-      setUserName("");
-      setUserEmail("");
-      setProductId("");
-      setCustomerName("");
-      setComment("");
-      setRating(1);
+      setFormData({
+        userName: "",
+        userEmail: "",
+        productId: "",
+        customerName: "",
+        comment: "",
+        rating: 1,
+      });
+      
+      // Trigger refresh
+      if (onFeedbackAdded) {
+        onFeedbackAdded();
+      }
+      
+      alert("Feedback submitted successfully!");
     } catch (err) {
-      console.error(err);
-      alert("Failed to submit feedback");
+      console.error("Error submitting feedback:", err);
+      alert("Failed to submit feedback. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
+  const goToDashboard = () => {
+    navigate("/dashboard");
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="User Name"
-        value={userName}
-        onChange={(e) => setUserName(e.target.value)}
-        required
-      />
-      <input
-        type="email"
-        placeholder="User Email"
-        value={userEmail}
-        onChange={(e) => setUserEmail(e.target.value)}
-        required
-      />
-      <input
-        type="number"
-        placeholder="Product ID"
-        value={productId}
-        onChange={(e) => setProductId(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Customer Name"
-        value={customerName}
-        onChange={(e) => setCustomerName(e.target.value)}
-        required
-      />
-      <input
-        type="text"
-        placeholder="Comment"
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-        required
-      />
-      <input
-        type="number"
-        placeholder="Rating (1-5)"
-        value={rating}
-        min={1}
-        max={5}
-        onChange={(e) => setRating(parseInt(e.target.value))}
-        required
-      />
-      <button type="submit">Submit Feedback</button>
-    </form>
+    <div className="feedback-container">
+      <div className="feedback-card">
+        <div className="feedback-header">
+          <h2>Share Your Feedback</h2>
+          <p>We value your opinion! Please share your experience with us.</p>
+        </div>
+
+        <form onSubmit={handleSubmit} className="feedback-form">
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="userName">Your Name *</label>
+              <input
+                id="userName"
+                name="userName"
+                type="text"
+                placeholder="Enter your full name"
+                value={formData.userName}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="userEmail">Email Address *</label>
+              <input
+                id="userEmail"
+                name="userEmail"
+                type="email"
+                placeholder="your.email@example.com"
+                value={formData.userEmail}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="productId">Product ID *</label>
+              <input
+                id="productId"
+                name="productId"
+                type="number"
+                placeholder="Product identifier"
+                value={formData.productId}
+                onChange={handleChange}
+                min="1"
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="customerName">Customer Name *</label>
+              <input
+                id="customerName"
+                name="customerName"
+                type="text"
+                placeholder="Customer's name"
+                value={formData.customerName}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="comment">Your Feedback *</label>
+            <textarea
+              id="comment"
+              name="comment"
+              placeholder="Share your detailed feedback here..."
+              value={formData.comment}
+              onChange={handleChange}
+              rows="4"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="rating">Rating *</label>
+            <div className="rating-container">
+              <input
+                id="rating"
+                name="rating"
+                type="range"
+                min="1"
+                max="5"
+                value={formData.rating}
+                onChange={handleChange}
+                className="rating-slider"
+              />
+              <div className="rating-display">
+                <span className="rating-stars">
+                  {"★".repeat(formData.rating)}{"☆".repeat(5 - formData.rating)}
+                </span>
+                <span className="rating-value">({formData.rating}/5)</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="form-actions">
+            <button 
+              type="submit" 
+              className="submit-btn"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? (
+                <>
+                  <span className="spinner"></span>
+                  Submitting...
+                </>
+              ) : (
+                "Submit Feedback"
+              )}
+            </button>
+            
+            <button 
+              type="button" 
+              onClick={goToDashboard}
+              className="dashboard-btn"
+            >
+              View Insights
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 
