@@ -1,8 +1,9 @@
 import React, { useState, useCallback } from "react";
 import { Routes, Route } from 'react-router-dom';
-import FeedbackForm from "./components/FeedbackForm";
+import RootFeedbackComponent from "./components/RootFeedbackComponent";
 import FeedbackList from "./components/FeedbackList";
 import Dashboard from './components/Dashboard';
+import FeedbackHistory from './components/FeedbackHistory';
 import './App.css';
 
 function App() {
@@ -14,18 +15,18 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Feedback System</h1>
       <Routes>
-        {/* Main Feedback Page */}
-        <Route path="/" element={
-          <>
-            <FeedbackForm onFeedbackAdded={refreshList} />
-            <FeedbackList refreshTrigger={refreshTrigger} />
-          </>
-        } />
+        {/* Main Feedback Page with Root Component */}
+        <Route path="/" element={<RootFeedbackComponent />} />
+
+        {/* Feedback List Page */}
+        <Route path="/feedback-list" element={<FeedbackList refreshTrigger={refreshTrigger} />} />
 
         {/* Dashboard / Analytics Page */}
         <Route path="/dashboard" element={<Dashboard />} />
+
+        {/* Feedback History with filtering */}
+        <Route path="/feedback-history" element={<FeedbackHistory />} />
       </Routes>
     </div>
   );

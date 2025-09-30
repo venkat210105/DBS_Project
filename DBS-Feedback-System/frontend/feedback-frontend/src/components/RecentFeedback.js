@@ -1,7 +1,22 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './RecentFeedback.css';
 
-export default function RecentFeedback({ recentFeedback }) {
+export default function RecentFeedback({ recentFeedback, darkMode }) {
+  const navigate = useNavigate();
+
+  const handleCustomerClick = (feedback) => {
+    const email = feedback.email || feedback.userEmail;
+    const name = feedback.customerName || feedback.userName;
+    
+    if (email || name) {
+      const params = new URLSearchParams();
+      if (email) params.append('email', email);
+      if (name) params.append('name', name);
+      navigate(`/feedback-history?${params.toString()}`);
+    }
+  };
+
   if (!recentFeedback || !Array.isArray(recentFeedback) || recentFeedback.length === 0) {
     return (
       <div className="recent-feedback-container">
@@ -36,7 +51,7 @@ export default function RecentFeedback({ recentFeedback }) {
   };
 
   return (
-    <div className="recent-feedback-container">
+    <div className={`recent-feedback-container ${darkMode ? 'dark-mode' : ''}`}>
       <div className="recent-feedback-header">
         <h2>Recent Feedback</h2>
         <span className="feedback-count">{recentFeedback.length} entries</span>
@@ -47,8 +62,11 @@ export default function RecentFeedback({ recentFeedback }) {
           <thead>
             <tr>
               <th className="id-column">ID</th>
-              <th className="comment-column">Comment</th>
-              <th className="sentiment-column">Sentiment</th>
+              <th className="customer-column">Customer</th>
+              <th className="service-column">Service Details</th>
+              <th className="comment-column">Feedback</th>
+              <th className="sentiment-column">Sentiment & Rating</th>
+              <th className="date-column">Date</th>
             </tr>
           </thead>
           <tbody>
@@ -57,12 +75,31 @@ export default function RecentFeedback({ recentFeedback }) {
                 <td className="id-cell">
                   <span className="feedback-id">#{feedback.id}</span>
                 </td>
+                <td className="customer-cell">
+                  <div className="customer-info">
+                    <div 
+                      className="customer-name clickable-name" 
+                      onClick={() => handleCustomerClick(feedback)}
+                      title="Click to view this customer's feedback history"
+                    >
+                      {feedback.customerName || 'N/A'}
+                    </div>
+                    <div className="customer-email">{feedback.email || feedback.userEmail || 'N/A'}</div>
+                    <div className="customer-type">{feedback.customerType || 'N/A'}</div>
+                  </div>
+                </td>
+                <td className="service-cell">
+                  <div className="service-info">
+                    <div className="service-category">{feedback.serviceCategory || 'N/A'}</div>
+                    <div className="service-channel">{feedback.serviceChannel || 'N/A'}</div>
+                    <div className="business-unit">{feedback.businessUnit || 'N/A'}</div>
+                  </div>
+                </td>
                 <td className="comment-cell">
                   <div className="comment-content">
-                    <p className="comment-text">{feedback.comment}</p>
-                    {feedback.customerName && (
-                      <span className="customer-name">— {feedback.customerName}</span>
-                    )}
+                    <p className="comment-text">
+                      {feedback.feedback || feedback.comment || 'No feedback provided'}
+                    </p>
                   </div>
                 </td>
                 <td className="sentiment-cell">
@@ -78,8 +115,14 @@ export default function RecentFeedback({ recentFeedback }) {
                       <span className="rating-stars">
                         {"★".repeat(feedback.rating)}{"☆".repeat(5 - feedback.rating)}
                       </span>
+                      <span className="rating-number">({feedback.rating}/5)</span>
                     </div>
                   )}
+                </td>
+                <td className="date-cell">
+                  <div className="date-info">
+                    {feedback.createdAt || 'N/A'}
+                  </div>
                 </td>
               </tr>
             ))}

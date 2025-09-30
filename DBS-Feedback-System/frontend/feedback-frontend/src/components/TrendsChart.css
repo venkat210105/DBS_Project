@@ -7,6 +7,13 @@
   border: 1px solid #f1f5f9;
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.dark-mode .trends-chart-container {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .trends-chart-container::before {
@@ -83,6 +90,7 @@
   border-radius: 8px;
   padding: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 

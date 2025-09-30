@@ -47,6 +47,15 @@ public class DashboardResponse {
         private Long id;
         private String comment;
         private String label;
+        private String customerName;
+        private String email;
+        private String serviceCategory;
+        private String serviceChannel;
+        private String customerType;
+        private String businessUnit;
+        private String feedback;
+        private int rating;
+        private String createdAt;
 
         public Long getId() { return id; }
         public void setId(Long id) { this.id = id; }
@@ -56,5 +65,32 @@ public class DashboardResponse {
 
         public String getLabel() { return label; }
         public void setLabel(String label) { this.label = label; }
+
+        public String getCustomerName() { return customerName; }
+        public void setCustomerName(String customerName) { this.customerName = customerName; }
+
+        public String getEmail() { return email; }
+        public void setEmail(String email) { this.email = email; }
+
+        public String getServiceCategory() { return serviceCategory; }
+        public void setServiceCategory(String serviceCategory) { this.serviceCategory = serviceCategory; }
+
+        public String getServiceChannel() { return serviceChannel; }
+        public void setServiceChannel(String serviceChannel) { this.serviceChannel = serviceChannel; }
+
+        public String getCustomerType() { return customerType; }
+        public void setCustomerType(String customerType) { this.customerType = customerType; }
+
+        public String getBusinessUnit() { return businessUnit; }
+        public void setBusinessUnit(String businessUnit) { this.businessUnit = businessUnit; }
+
+        public String getFeedback() { return feedback; }
+        public void setFeedback(String feedback) { this.feedback = feedback; }
+
+        public int getRating() { return rating; }
+        public void setRating(int rating) { this.rating = rating; }
+
+        public String getCreatedAt() { return createdAt; }
+        public void setCreatedAt(String createdAt) { this.createdAt = createdAt; }
     }
 }

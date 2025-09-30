@@ -47,7 +47,7 @@ public class DashboardService {
                 .collect(Collectors.toList());
         response.setTrends(trends);
 
-        // 3️⃣ Recent feedback (last 5)
+        // 3️⃣ Recent feedback (last 5) with all fields
         List<DashboardResponse.RecentFeedback> recent = allFeedback.stream()
                 .sorted(Comparator.comparing(
                         Feedback::getCreatedAt,
@@ -58,7 +58,21 @@ public class DashboardService {
                     DashboardResponse.RecentFeedback rf = new DashboardResponse.RecentFeedback();
                     rf.setId(f.getId());
                     rf.setComment(f.getComment());
-                    rf.setLabel(f.getSentimentLabel());  // Correct setter name
+                    rf.setLabel(f.getSentimentLabel());
+                    rf.setCustomerName(f.getCustomerName());
+                    rf.setEmail(f.getEmail());
+                    rf.setServiceCategory(f.getServiceCategory());
+                    rf.setServiceChannel(f.getServiceChannel());
+                    rf.setCustomerType(f.getCustomerType());
+                    rf.setBusinessUnit(f.getBusinessUnit());
+                    rf.setFeedback(f.getFeedback());
+                    rf.setRating(f.getRating());
+                    
+                    // Format timestamp for display
+                    if (f.getCreatedAt() != null) {
+                        rf.setCreatedAt(f.getCreatedAt().toLocalDateTime().format(formatter));
+                    }
+                    
                     return rf;
                 })
                 .collect(Collectors.toList());

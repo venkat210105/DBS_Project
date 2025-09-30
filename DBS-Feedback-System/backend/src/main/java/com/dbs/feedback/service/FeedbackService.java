@@ -49,6 +49,7 @@ public class FeedbackService {
         Feedback existing = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Feedback not found"));
 
+        // Basic fields
         existing.setCustomerName(updated.getCustomerName());
         existing.setComment(updated.getComment());
         existing.setRating(updated.getRating());
@@ -56,8 +57,30 @@ public class FeedbackService {
         existing.setUserEmail(updated.getUserEmail());
         existing.setProductId(updated.getProductId());
 
-        // Perform sentiment analysis before saving if comment is provided
-        if (updated.getComment() != null && !updated.getComment().isEmpty()) {
+        // Enhanced fields
+        if (updated.getServiceCategory() != null) {
+            existing.setServiceCategory(updated.getServiceCategory());
+        }
+        if (updated.getServiceChannel() != null) {
+            existing.setServiceChannel(updated.getServiceChannel());
+        }
+        if (updated.getCustomerType() != null) {
+            existing.setCustomerType(updated.getCustomerType());
+        }
+        if (updated.getBusinessUnit() != null) {
+            existing.setBusinessUnit(updated.getBusinessUnit());
+        }
+        if (updated.getFeedback() != null) {
+            existing.setFeedback(updated.getFeedback());
+        }
+        if (updated.getEmail() != null) {
+            existing.setEmail(updated.getEmail());
+        }
+
+        // Perform sentiment analysis before saving if comment or feedback is provided
+        String textToAnalyze = updated.getComment() != null && !updated.getComment().isEmpty() ? 
+                              updated.getComment() : updated.getFeedback();
+        if (textToAnalyze != null && !textToAnalyze.isEmpty()) {
             performSentimentAnalysis(existing);
         }
 

@@ -32,20 +32,20 @@
   color: #1a202c;
   font-size: 32px;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #EB0029 0%, #C8002A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .feedback-count {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #EB0029 0%, #C8002A 100%);
   color: white;
   padding: 8px 16px;
   border-radius: 20px;
   font-size: 14px;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 2px 8px rgba(235, 0, 41, 0.3);
 }
 
 .refresh-btn {
@@ -106,7 +106,7 @@
   width: 24px;
   height: 24px;
   border: 3px solid #f1f5f9;
-  border-top: 3px solid #667eea;
+  border-top: 3px solid #EB0029;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
@@ -208,7 +208,7 @@
 }
 
 .feedback-card.expanded {
-  border-color: #667eea;
+  border-color: #EB0029;
   box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
   transform: translateY(-2px);
   z-index: 20;
@@ -336,7 +336,7 @@
   background: #f8fafc;
   padding: 16px;
   border-radius: 12px;
-  border-left: 4px solid #667eea;
+  border-left: 4px solid #EB0029;
 }
 
 .feedback-card.expanded .comment-text {
@@ -396,7 +396,7 @@
 }
 
 .toggle-expand {
-  color: #667eea;
+  color: #EB0029;
   font-weight: 700;
   cursor: pointer;
   display: flex;

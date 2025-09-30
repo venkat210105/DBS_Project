@@ -2,12 +2,153 @@
   max-width: 1200px;
   margin: 20px auto;
   font-family: Arial, sans-serif;
+  transition: all 0.3s ease;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
+/* Light Mode */
+.dashboard-container.light-mode {
+  background: #f8fafc;
   color: #333;
+}
+
+.dashboard-container.light-mode h2 {
+  color: #333;
+}
+
+.dashboard-container.light-mode .chart {
+  background: #fff;
+  color: #333;
+}
+
+.dashboard-container.light-mode .recent-feedback {
+  background: #fff;
+  color: #333;
+}
+
+/* Dark Mode */
+.dashboard-container.dark-mode {
+  background: linear-gradient(135deg, #000000 0%, #1A1A1A 50%, #2A2A2A 100%);
+  color: #ffffff;
+}
+
+.dashboard-container.dark-mode h2 {
+  color: #ffffff;
+}
+
+.dashboard-container.dark-mode .chart {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.dashboard-container.dark-mode .recent-feedback {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* Global Dark Mode Styles */
+body.dark-mode {
+  background: linear-gradient(135deg, #000000 0%, #1A1A1A 50%, #2A2A2A 100%) !important;
+  color: #ffffff !important;
+  min-height: 100vh;
+}
+
+body.light-mode {
+  background: #f8fafc !important;
+  color: #333333 !important;
+}
+
+/* Dark Mode for all chart containers */
+.dark-mode .chart h3 {
+  color: #ffffff !important;
+}
+
+.dark-mode .recent-feedback h3 {
+  color: #ffffff !important;
+}
+
+/* Dark mode for all text elements */
+.dark-mode * {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.dark-mode p, .dark-mode span, .dark-mode div {
+  color: inherit;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.dashboard-header h2 {
+  margin: 0;
+  text-align: left;
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #EB0029 0%, #FF1744 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.toggle-container {
+  width: 50px;
+  height: 24px;
+  background: #ccc;
+  border-radius: 15px;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.dark-mode .toggle-container {
+  background: #EB0029;
+  border-color: #FF1744;
+}
+
+.toggle-circle {
+  width: 18px;
+  height: 18px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 1px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-circle.light {
+  left: 2px;
+  transform: translateX(0);
+}
+
+.toggle-circle.dark {
+  left: 2px;
+  transform: translateX(26px);
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode-toggle:hover .toggle-container {
+  transform: scale(1.05);
 }
 
 .cards-container {
@@ -24,11 +165,64 @@ h2 {
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   text-align: center;
-  transition: transform 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.dark-mode .card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
 }
 
 .card:hover {
   transform: translateY(-5px);
+}
+
+.clickable-card {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.clickable-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.clickable-card:active {
+  transform: translateY(-2px);
+}
+
+.positive-card {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.neutral-card {
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
+  color: white;
+}
+
+.negative-card {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+}
+
+.card-count {
+  font-size: 2.5rem !important;
+  font-weight: 900 !important;
+  margin: 10px 0 !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.card-subtitle {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  font-style: italic;
+  margin-top: 8px;
+  display: block;
 }
 
 .card h3 {
